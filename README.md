@@ -13,7 +13,7 @@ local result = Vose({
    ele_1 = 25, -- element = weight
    ele_2 = 35, -- element = weight
    ele_3 = 45
-}):get()
+})
 ```
 
 ----
@@ -29,5 +29,5 @@ local result = Vose({
    ele_1 = 25, -- 元素 = 权重
    ele_2 = 35,
    ele_3 = 45
-}):get()
+})
 ```
