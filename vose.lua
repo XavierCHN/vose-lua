@@ -13,7 +13,6 @@
     })
 
     -- test
-    --
     -- local plist = {
     --     a = 25,
     --     b = 65,
@@ -22,7 +21,7 @@
     -- local v = Vose(plist)
     -- local r = {}
     -- for i = 1, 1000 do
-    --     local res = v
+    --     local res = v:get()
     --     r[res] = r[res] or 0
     --     r[res] = r[res] + 1 
     -- end
@@ -115,12 +114,38 @@ function Vose.__call(self, plist)
         end
     end
 
-    local i = math.floor(math.random(1, tablecount(prob)))
-    if prob[i] >= math.random() then
-        return alias[i][1]
+    self.prob = prob
+    self.alias = alias
+    self.n = n
+    self.plist = plist
+
+    return self
+end
+
+function Vose:get()
+    local i = math.floor(math.random(1, tablecount(self.prob)))
+    if self.prob[i] >= math.random() then
+        return self.alias[i][1]
     else
-        return alias[i][2]
+        return self.alias[i][2]
     end
 end
+
+    -- test
+    -- local plist = {
+    --     a = 25,
+    --     b = 65,
+    --     c = 10
+    -- }
+    -- local v = Vose(plist)
+    -- local r = {}
+    -- for i = 1, 1000 do
+    --     local res = v:get()
+    --     r[res] = r[res] or 0
+    --     r[res] = r[res] + 1 
+    -- end
+    -- for k,v in pairs(r) do
+    --     print(k,v)
+    -- end
 
 return Vose
