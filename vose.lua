@@ -10,7 +10,7 @@
         element_1 = 25, -- element_name = drop_rate
         element_2 = 35,
         element_3 = 55
-    }):get()
+    })
 
     -- test
     --
@@ -22,7 +22,7 @@
     -- local v = Vose(plist)
     -- local r = {}
     -- for i = 1, 1000 do
-    --     local res = v:get()
+    --     local res = v
     --     r[res] = r[res] or 0
     --     r[res] = r[res] + 1 
     -- end
@@ -115,20 +115,11 @@ function Vose.__call(self, plist)
         end
     end
 
-    self.prob = prob
-    self.alias = alias
-    self.n = n
-    self.plist = plist
-
-    return self
-end
-
-function Vose:get()
-    local i = math.floor(math.random(1, tablecount(self.prob)))
-    if self.prob[i] >= math.random() then
-        return self.alias[i][1]
+    local i = math.floor(math.random(1, tablecount(prob)))
+    if prob[i] >= math.random() then
+        return alias[i][1]
     else
-        return self.alias[i][2]
+        return alias[i][2]
     end
 end
 
