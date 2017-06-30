@@ -3,7 +3,6 @@
     here http://www.keithschwarz.com/darts-dice-coins/ . This algorithm
     can be used to efficiently find weighted random data ex. rolling a
     weighted dice.
-
     -- Usage
     local Vose = require('PATH_TO_VOSE/Vose')
     local result = Vose({
@@ -11,7 +10,6 @@
         element_2 = 35,
         element_3 = 55
     })
-
     -- test
     -- local plist = {
     --     a = 25,
@@ -28,7 +26,6 @@
     -- for k,v in pairs(r) do
     --     print(k,v)
     -- end
-
     Created on 2016.1.15
     @author XavierCHN
 ]]
@@ -115,12 +112,13 @@ function Vose.__call(self, plist)
     self.alias = alias
     self.n = n
     self.plist = plist
+    self.prob_count = tablecount(prob)
 
     return self
 end
 
 function Vose:get()
-    local i = math.floor(math.random(1, tablecount(self.prob)))
+    local i = math.floor(math.random(1, self.prob_count))
     if self.prob[i] >= math.random() then
         return self.alias[i][1]
     else
@@ -128,24 +126,24 @@ function Vose:get()
     end
 end
 
-    -- test
-    -- if os then
-    --     math.randomseed(tostring(os.time()):reverse():sub(1, 6))  
-    -- end
-    -- local plist = {
-    --     a = 25,
-    --     b = 65,
-    --     c = 10
-    -- }
-    -- local v = Vose(plist)
-    -- local r = {}
-    -- for i = 1, 1000 do
-    --     local res = v:get()
-    --     r[res] = r[res] or 0
-    --     r[res] = r[res] + 1 
-    -- end
-    -- for k,v in pairs(r) do
-    --     print(k,v)
-    -- end
+-- test
+-- if os then
+--     math.randomseed(tostring(os.time()):reverse():sub(1, 6))  
+-- end
+-- local plist = {
+--     a = 25,
+--     b = 65,
+--     c = 10
+-- }
+-- local v = Vose(plist)
+-- local r = {}
+-- for i = 1, 100000 do
+--     local res = v:get()
+--     r[res] = r[res] or 0
+--     r[res] = r[res] + 1 
+-- end
+-- for k,v in pairs(r) do
+--     print(k,v)
+-- end
 
 return Vose
