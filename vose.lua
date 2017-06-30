@@ -32,9 +32,6 @@
     Created on 2016.1.15
     @author XavierCHN
 ]]
-if os then
-    math.randomseed(tostring(os.time()):reverse():sub(1, 6))  
-end
 
 local Vose = {}
 Vose.__index = Vose
@@ -132,6 +129,9 @@ function Vose:get()
 end
 
     -- test
+    -- if os then
+    --     math.randomseed(tostring(os.time()):reverse():sub(1, 6))  
+    -- end
     -- local plist = {
     --     a = 25,
     --     b = 65,
